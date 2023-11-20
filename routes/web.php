@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PagesController;
 use App\Http\Controllers\UploadManager;
 use Illuminate\Support\Facades\Route;
 
@@ -22,9 +23,9 @@ Route::get('/table', function () {
     return view('table');
 });
 
-Route::get('/invoice_pending', function () {
-    return view('invoice_pending');
-}) -> name('invoice_pending');
+// Route::get('/invoice_pending', function () {
+//     return view('invoice_pending');
+// }) -> name('invoice_pending');
 
 Route::get('/form_invoice', function () {
     return view('form_invoice');
@@ -33,6 +34,8 @@ Route::get('/form_invoice', function () {
 Route::get('/upload_file_invoice', function () {
     return view('upload_file_invoice');
 });
+
+Route::get('/invoice_pending', [PagesController::class, 'index']) -> name('invoice_pending');
 
 Route::get('/upload', [UploadManager::class, 'upload'])->name('upload.form');
 Route::post('/post_invoice', [UploadManager::class, 'uploadPost']);

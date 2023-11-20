@@ -11,7 +11,7 @@ class UploadManager extends Controller
 {
     function upload()
     {
-        return view('form_invoice');
+        return view('form_invoice', compact('data'));
     }
 
 
