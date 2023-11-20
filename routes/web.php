@@ -26,5 +26,9 @@ Route::get('/invoice_pending', function () {
     return view('invoice_pending');
 });
 
+Route::get('/form_invoice', function () {
+    return view('form_invoice');
+});
+
 Route::get('/upload', [UploadManager::class, 'upload'])->name('upload.form');
 Route::post('/uploadFile', [UploadManager::class, 'uploadPost']);

@@ -111,73 +111,55 @@
 
         <!--  BEGIN CONTENT AREA  -->
         <div id="content" class="main-content">
-            <div class="layout-px-spacing">
-
-                <div class="page-header">
-                    <div class="page-title">
-                        <h3>Data Invoice Pending </h3>
-                    </div>
-                </div>
-                <div class="row" id="cancel-row">
-
-                    <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
-                        <div class="widget-content widget-content-area br-6">
-                            <div class="table-responsive mb-4 mt-4">
-                                <div class="">
-                                    <form action=""><input type="submit" name="time" class=" mb-4 btn btn-primary" value="Tambah Data Invoice"></form>
+            <div class="container">
+                <div class="container">
+                    <div class="row layout-top-spacing">
+                        <div class="col-lg-12 col-12 layout-spacing">
+                            <div class="statbox widget box box-shadow">
+                                <div class="widget-header">
+                                    <div class="row">
+                                        <div class="col-xl-12 col-md-12 col-sm-12 col-12">
+                                            <h4>Upload Data Invoice</h4>
+                                        </div>
+                                    </div>
                                 </div>
-                                <table id="zero-config" class="table table-hover" style="width:100%">
-                                    <thead>
-                                        <tr>
-                                            <th>Nomor Tanda Terima</th>
-                                            <th>Tanggal Kirim</th>
-                                            <th>Jumlah Invoice</th>
-                                            <th>Action</th>
-                                            <th class="no-content"></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>Tiger Nixon</td>
-                                            <td>System Architect</td>
-                                            <td>Edinburgh</td>
-                                            <td>
-                                                <form action=""><input type="submit" name="time" class=" btn btn-primary" value="Upload"></form>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Tiger Nixon</td>
-                                            <td>System Architect</td>
-                                            <td>Edinburgh</td>
-                                            <td>
-                                                <form action=""><input type="submit" name="time" class=" btn btn-primary" value="Upload"></form>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Tiger Nixon</td>
-                                            <td>System Architect</td>
-                                            <td>Edinburgh</td>
-                                            <td>
-                                                <form action=""><input type="submit" name="time" class=" btn btn-primary" value="Upload"></form>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                    <tfoot>
-                                        <tr>
-                                            <th>Nomor Tanda Terima</th>
-                                            <th>Tanggal Kirim</th>
-                                            <th>Jumlah Invoice</th>
-                                            <th>Action</th>
-                                            <th class="no-content"></th>
-                                        </tr>
-                                    </tfoot>
-                                </table>
+                                <div class="widget-content widget-content-area">
+                                    <form>
+                                        <div class="form-group mb-4">
+                                            <label for="nomor_invoice">Nomor Invoice</label>
+                                            <input type="email" class="form-control" id="nomor_invoice" name="nomor_invoice" required>
+                                        </div>
+                                        <div class="form-group mb-4">
+                                            <label for="tanggal_invoice">Tanggal Invoice</label>
+                                            <input type="date" class="form-control" id="tanggal_invoice" name="tanggal_invoice" required>
+                                        </div>
+                                        <div class="form-group mb-4">
+                                            <label for="jenis_pengiriman">Jenis Pengiriman</label>
+                                            <select class="form-control" id="jenis_pengiriman" name="jenis_pengiriman">
+                                                <option value="Pilihan Satu" hidden>Pilihan Satu</option>
+                                                <option value="Internal kurir">Internal Kurir</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group mb-4">
+                                            <label for="total_invoice">Total Invoice</label>
+                                            <input type="number" class="form-control" id="total_invoice" name="total_invoice" required>
+                                        </div>
+                                        <div class="form-group mb-4 mt-3">
+                                            <label for="file_nomor_tanda_terima">File Nomor Tanda Terima</label>
+                                            <input type="file" class="form-control-file" id="file_nomor_tanda_terima" name="file_nomor_tanda_terima">
+                                        </div>
+                                        <div class="form-group mb-4">
+                                            <label for="tanggal_pengiriman">Tanggal Pengiriman</label>
+                                            <input type="date" class="form-control" id="tanggal_pengiriman" name="tanggal_pengiriman" required>
+                                        </div>
+                                        <input type="submit" name="time" class="mt-4 mb-4 btn btn-primary" value="Upload">
+                                    </form>
+                                </div>
                             </div>
                         </div>
+
                     </div>
-
                 </div>
-
             </div>
         </div>
         <!--  END CONTENT AREA  -->
@@ -196,7 +178,12 @@
         $(document).ready(function() {
             App.init();
         });
+
+        document.getElementById("total_invoice").addEventListener("input", function () {
+            this.value = this.value.replace(/[^0-9]/g, '');
+        });
     </script>
+
     <script src="assets/js/custom.js"></script>
     <!-- END GLOBAL MANDATORY SCRIPTS -->
 
