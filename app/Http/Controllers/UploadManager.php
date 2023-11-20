@@ -51,7 +51,6 @@ class UploadManager extends Controller
     public function edit($id)
     {
         $data = Invoice::findorfail($id);
-        // dd($invoice);
         return view('upload_file_invoice', compact('data'));
     }
 
@@ -64,8 +63,6 @@ class UploadManager extends Controller
         $fileName = uniqid() . '_' . $file->getClientOriginalName();
         $file->move($destination, $fileName);
 
-        // dd($request->all());
-        $data = Invoice::findorfail($id);
         Invoice::where('id', $id)->update([
             'status'   => $request->status,
             'foto_bukti_tanda_terima' => $destination . '/' . $fileName,
