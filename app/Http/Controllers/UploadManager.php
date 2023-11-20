@@ -11,7 +11,7 @@ class UploadManager extends Controller
 {
     function upload()
     {
-        return view('upload');
+        return view('form_invoice');
     }
 
 
@@ -33,13 +33,14 @@ class UploadManager extends Controller
                 'total_invoice' => $request->input('total_invoice'),
                 'file_nomor_tanda_terima' => $destination . '/' . $fileName,
                 'tanggal_pengiriman' => $request->input('tanggal_pengiriman'),
+                'status' => 'upload',
             ]);
 
             // Simpan ke database
             if ($invoice->save()) {
-                return redirect()->route('upload.form')->with('success', 'File uploaded and data saved successfully');
+                return redirect()->route('invoice_pending')->with('success', 'File uploaded and data saved successfully');
             } else {
-                return redirect()->route('upload.form')->with('error', 'File upload failed');
+                return redirect()->route('invoice_pending')->with('error', 'File upload failed');
             }
         } catch (Exception $e) {
             // Cetak pesan error

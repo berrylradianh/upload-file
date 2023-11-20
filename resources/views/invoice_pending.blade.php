@@ -124,7 +124,7 @@
                         <div class="widget-content widget-content-area br-6">
                             <div class="table-responsive mb-4 mt-4">
                                 <div class="">
-                                    <form action=""><input type="submit" name="time" class=" mb-4 btn btn-primary" value="Tambah Data Invoice"></form>
+                                    <a href="{{ url('form_invoice') }}"><input type="submit" name="tambah_data_invoice" class=" mb-4 btn btn-primary" value="Tambah Data Invoice"></a>
                                 </div>
                                 <table id="zero-config" class="table table-hover" style="width:100%">
                                     <thead>

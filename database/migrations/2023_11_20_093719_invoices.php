@@ -18,8 +18,9 @@ return new class extends Migration
             $table->string('jenis_pengiriman');
             $table->integer('total_invoice');
             $table->string('file_nomor_tanda_terima');
-            // $table->binary('foto_bukti_tanda_terima');
+            $table->string('foto_bukti_tanda_terima')->nullable();
             $table->date('tanggal_pengiriman');
+            $table->string('status');
             $table->timestamps();
         });
     }

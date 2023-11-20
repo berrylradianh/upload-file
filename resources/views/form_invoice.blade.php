@@ -124,10 +124,11 @@
                                     </div>
                                 </div>
                                 <div class="widget-content widget-content-area">
-                                    <form>
+                                    <form  action="{{ url('post_invoice') }}" method="POST" enctype="multipart/form-data">
+                                        @csrf
                                         <div class="form-group mb-4">
                                             <label for="nomor_invoice">Nomor Invoice</label>
-                                            <input type="email" class="form-control" id="nomor_invoice" name="nomor_invoice" required>
+                                            <input type="text" class="form-control" id="nomor_invoice" name="nomor_invoice" required>
                                         </div>
                                         <div class="form-group mb-4">
                                             <label for="tanggal_invoice">Tanggal Invoice</label>
