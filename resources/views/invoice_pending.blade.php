@@ -118,12 +118,14 @@
                         <h3>Data Invoice Pending </h3>
                     </div>
                 </div>
-
                 <div class="row" id="cancel-row">
 
                     <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
                         <div class="widget-content widget-content-area br-6">
                             <div class="table-responsive mb-4 mt-4">
+                                <div class="mb-4">
+                                    <form action=""><input type="submit" name="upload_file" id="upload_file" value="Tambah Data Invoice" class="btn-primary"></form>
+                                </div>
                                 <table id="zero-config" class="table table-hover" style="width:100%">
                                     <thead>
                                         <tr>
@@ -139,19 +141,25 @@
                                             <td>Tiger Nixon</td>
                                             <td>System Architect</td>
                                             <td>Edinburgh</td>
-                                            <td><form action=""><input type="submit" name="upload_file" id="upload_file" value="Upload" class="btn-primary"></form></td>
+                                            <td>
+                                                <form action=""><input type="submit" name="upload_file" id="upload_file" value="Upload" class="btn-primary"></form>
+                                            </td>
                                         </tr>
                                         <tr>
                                             <td>Tiger Nixon</td>
                                             <td>System Architect</td>
                                             <td>Edinburgh</td>
-                                            <td><form action=""><input type="submit" name="upload_file" id="upload_file" value="Upload" class="btn-primary"></form></td>
+                                            <td>
+                                                <form action=""><input type="submit" name="upload_file" id="upload_file" value="Upload" class="btn-primary"></form>
+                                            </td>
                                         </tr>
                                         <tr>
                                             <td>Tiger Nixon</td>
                                             <td>System Architect</td>
                                             <td>Edinburgh</td>
-                                            <td><form action=""><input type="submit" name="upload_file" id="upload_file" value="Upload" class="btn-primary"></form></td>
+                                            <td>
+                                                <form action=""><input type="submit" name="upload_file" id="upload_file" value="Upload" class="btn-primary"></form>
+                                            </td>
                                         </tr>
                                     </tbody>
                                     <tfoot>
