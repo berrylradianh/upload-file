@@ -9,9 +9,19 @@ use Illuminate\Http\Request;
 class PagesController extends Controller
 {
     //
-    public function index(){
+    public function invoice_pending(){
         $datas = Invoice::all();
         // dd($datas);
         return view('invoice_pending', compact('datas'));
+    }
+    public function upload_file_invoice($id){
+        $data = Invoice::findorfail($id);
+        // dd($invoice);
+        return view('upload_file_invoice', compact('data'));
+    }
+    public function table(){
+        $datas = Invoice::all();
+        // dd($datas);
+        return view('table', compact('datas'));
     }
 }

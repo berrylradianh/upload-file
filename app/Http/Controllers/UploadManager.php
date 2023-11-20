@@ -47,4 +47,29 @@ class UploadManager extends Controller
             dd($e->getMessage());
         }
     }
+
+    public function edit($id)
+    {
+        $data = Invoice::findorfail($id);
+        // dd($invoice);
+        return view('upload_file_invoice', compact('data'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $file = $request->file("foto_bukti_tanda_terima");
+        $destination = "uploads";
+
+        // Simpan file dengan nama yang unik
+        $fileName = uniqid() . '_' . $file->getClientOriginalName();
+        $file->move($destination, $fileName);
+
+        // dd($request->all());
+        $data = Invoice::findorfail($id);
+        Invoice::where('id', $id)->update([
+            'status'   => $request->status,
+            'foto_bukti_tanda_terima' => $destination . '/' . $fileName,
+        ]);
+        return redirect()->route('table')->with('success', 'File uploaded and data saved successfully');
+    }
 }

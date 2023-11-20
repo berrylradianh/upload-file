@@ -128,58 +128,53 @@
                                     <thead>
                                         <tr>
                                             <th>Nomor Invoice</th>
-                                            <th>Upload Date</th>
-                                            <th>File Invoice</th>
-                                            <th>File Lampiran</th>
-                                            <th>File Tanda Terima</th>
-                                            <th>File Resi / Foto Bukti</th>
-                                            <th>Status Hardcopy</th>
-                                            <th>Status Validasi</th>
+                                            <th>Tanggal Invoice</th>
+                                            <th>Jenis Pengiriman</th>
+                                            <th>Total Invoice</th>
+                                            <th>File Nomor Tanda </th>
+                                            <th>Foto Bukti Tanda Terima</th>
+                                            <th>Tanggal Pengiriman</th>
+                                            <th>Status</th>
                                             <th class="no-content"></th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @foreach ($datas as $data)
                                         <tr>
-                                            <td>Tiger Nixon</td>
-                                            <td>System Architect</td>
-                                            <td>Edinburgh</td>
-                                            <td>61</td>
-                                            <td>2011/04/25</td>
-                                            <td>$320,800</td>
-                                            <td>$320,800</td>
-                                            <td>$320,800</td>
+                                            <td>{{ $data->nomor_invoice }}</td>
+                                            <td>{{ $data->tanggal_invoice }}</td>
+                                            <td>{{ $data->jenis_pengiriman }}</td>
+                                            <td>{{ $data->total_invoice }}</td>
+                                            <td> @if ($data->file_nomor_tanda_terima)
+                                                <?php $filename = pathinfo($data->file_nomor_tanda_terima)['filename']; ?>
+                                                <a href="{{ $data->file_nomor_tanda_terima }}" download>{{ $filename }}.{{ pathinfo($data->file_nomor_tanda_terima)['extension'] }}</a>
+                                                @else
+                                                No File
+                                                @endif
+                                            </td>
+                                            <td>
+                                                @if ($data->foto_bukti_tanda_terima)
+                                                <?php $filename = pathinfo($data->foto_bukti_tanda_terima)['filename']; ?>
+                                                <a href="{{ $data->foto_bukti_tanda_terima }}" download>{{ $filename }}.{{ pathinfo($data->foto_bukti_tanda_terima)['extension'] }}</a>
+                                                @else
+                                                No Foto
+                                                @endif
+                                            </td>
+                                            <td>{{ $data->tanggal_pengiriman }}</td>
+                                            <td>{{ $data->status }}</td>
                                         </tr>
-                                        <tr>
-                                            <td>Tiger Nixon</td>
-                                            <td>System Architect</td>
-                                            <td>Edinburgh</td>
-                                            <td>61</td>
-                                            <td>2011/04/25</td>
-                                            <td>$320,800</td>
-                                            <td>$320,800</td>
-                                            <td>$320,800</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Tiger Nixon</td>
-                                            <td>System Architect</td>
-                                            <td>Edinburgh</td>
-                                            <td>61</td>
-                                            <td>2011/04/25</td>
-                                            <td>$320,800</td>
-                                            <td>$320,800</td>
-                                            <td>$320,800</td>
-                                        </tr>
+                                        @endforeach
                                     </tbody>
                                     <tfoot>
                                         <tr>
                                             <th>Nomor Invoice</th>
-                                            <th>Upload Date</th>
-                                            <th>File Invoice</th>
-                                            <th>File Lampiran</th>
-                                            <th>File Tanda Terima</th>
-                                            <th>File Resi / Foto Bukti</th>
-                                            <th>Status Hardcopy</th>
-                                            <th>Status Validasi</th>
+                                            <th>Tanggal Invoice</th>
+                                            <th>Jenis Pengiriman</th>
+                                            <th>Total Invoice</th>
+                                            <th>File Nomor Tanda </th>
+                                            <th>Foto Bukti Tanda Terima</th>
+                                            <th>Tanggal Pengiriman</th>
+                                            <th>Status</th>
                                             <th class="no-content"></th>
                                         </tr>
                                     </tfoot>

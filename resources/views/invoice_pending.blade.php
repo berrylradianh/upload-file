@@ -143,7 +143,7 @@
                                             <td>{{ $data->tanggal_pengiriman }}</td>
                                             <td>{{ $data->total_invoice }}</td>
                                             <td>
-                                                <form action=""><input type="submit" name="time" class=" btn btn-primary" value="Upload"></form>
+                                                <a href="{{ url('upload_file_invoice', $data->id) }}"><input type="submit" name="time" class=" btn btn-primary" value="Upload"></a>
                                             </td>
                                         </tr>
                                         @endforeach

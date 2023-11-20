@@ -19,9 +19,9 @@ Route::get('/home', function () {
     return view('home');
 });
 
-Route::get('/table', function () {
-    return view('table');
-});
+// Route::get('/table', function () {
+//     return view('table');
+// });
 
 // Route::get('/invoice_pending', function () {
 //     return view('invoice_pending');
@@ -31,11 +31,14 @@ Route::get('/form_invoice', function () {
     return view('form_invoice');
 });
 
-Route::get('/upload_file_invoice', function () {
-    return view('upload_file_invoice');
-});
+// Route::get('/upload_file_invoice', function () {
+//     return view('upload_file_invoice');
+// });
 
-Route::get('/invoice_pending', [PagesController::class, 'index']) -> name('invoice_pending');
+Route::get('/invoice_pending', [PagesController::class, 'invoice_pending']) -> name('invoice_pending');
+Route::get('/table', [PagesController::class, 'table']) -> name('table');
+Route::get('/upload_file_invoice/{id}', [UploadManager::class, 'edit']) -> name('upload_file_invoice');
+Route::post('/post_upload_file_invoice/{id}', [UploadManager::class, 'update']) -> name('post_upload_file_invoice');
 
 Route::get('/upload', [UploadManager::class, 'upload'])->name('upload.form');
 Route::post('/post_invoice', [UploadManager::class, 'uploadPost']);

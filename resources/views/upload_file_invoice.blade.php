@@ -124,39 +124,43 @@
                                     </div>
                                 </div>
                                 <div class="widget-content widget-content-area">
-                                    <form>
+                                    <form action="{{url('post_upload_file_invoice', $data->id)}}" method="POST" enctype="multipart/form-data">
+                                        @csrf
                                         <div class="form-group mb-4">
                                             <label for="nomor_invoice">Nomor Invoice</label>
-                                            <input type="email" class="form-control" id="nomor_invoice" name="nomor_invoice" required>
+                                            <input type="email" class="form-control" id="nomor_invoice" name="nomor_invoice" value="{{$data->nomor_invoice}}" readonly>
                                         </div>
                                         <div class="form-group mb-4">
                                             <label for="tanggal_invoice">Tanggal Invoice</label>
-                                            <input type="date" class="form-control" id="tanggal_invoice" name="tanggal_invoice" required>
+                                            <input type="date" class="form-control" id="tanggal_invoice" name="tanggal_invoice" value="{{$data->tanggal_invoice}}" readonly>
                                         </div>
                                         <div class="form-group mb-4">
                                             <label for="jenis_pengiriman">Jenis Pengiriman</label>
-                                            <select class="form-control" id="jenis_pengiriman" name="jenis_pengiriman">
-                                                <option value="Pilihan Satu" hidden>Pilihan Satu</option>
-                                                <option value="Internal kurir">Internal Kurir</option>
-                                            </select>
+                                            <input type="text" class="form-control" id="jenis_pengiriman" name="jenis_pengiriman" value="{{$data->jenis_pengiriman}}" readonly>
                                         </div>
                                         <div class="form-group mb-4">
                                             <label for="total_invoice">Total Invoice</label>
-                                            <input type="number" class="form-control" id="total_invoice" name="total_invoice" required>
+                                            <input type="number" class="form-control" id="total_invoice" name="total_invoice" value="{{$data->total_invoice}}" readonly>
                                         </div>
                                         <div class="form-group mb-4 mt-3">
                                             <label for="file_nomor_tanda_terima">File Nomor Tanda Terima</label>
+                                            @if($data->file_nomor_tanda_terima)
+                                            <input type="text" class="form-control" id="file_nomor_tanda_terima" name="file_nomor_tanda_terima" value="{{ $data->file_nomor_tanda_terima }}" readonly>
+                                            @else
                                             <input type="file" class="form-control-file" id="file_nomor_tanda_terima" name="file_nomor_tanda_terima">
+                                            <small class="text-muted">No file uploaded yet.</small>
+                                            @endif
                                         </div>
                                         <div class="form-group mb-4 mt-3">
-                                            <label for="file_nomor_tanda_terima">Foto Bukti Tanda Terima</label>
-                                            <input type="file" class="form-control-file" id="file_nomor_tanda_terima" name="file_nomor_tanda_terima">
+                                            <label for="foto_bukti_tanda_terima">Foto Bukti Tanda Terima</label>
+                                            <input type="file" class="form-control-file" id="foto_bukti_tanda_terima" name="foto_bukti_tanda_terima" required>
                                         </div>
+                                        <input hidden type="text" class="form-control-file" id="status" name="status" value="paid" required>
                                         <div class="form-group mb-4">
                                             <label for="tanggal_pengiriman">Tanggal Pengiriman</label>
-                                            <input type="date" class="form-control" id="tanggal_pengiriman" name="tanggal_pengiriman" required>
+                                            <input type="date" class="form-control" id="tanggal_pengiriman" name="tanggal_pengiriman" value="{{$data->tanggal_pengiriman}}" readonly>
                                         </div>
-                                        <input type="submit" name="time" class="mt-4 mb-4 btn btn-primary" value="Upload">
+                                        <input type="submit" class="mt-4 mb-4 btn btn-primary" value="Upload">
                                     </form>
                                 </div>
                             </div>
@@ -183,7 +187,7 @@
             App.init();
         });
 
-        document.getElementById("total_invoice").addEventListener("input", function () {
+        document.getElementById("total_invoice").addEventListener("input", function() {
             this.value = this.value.replace(/[^0-9]/g, '');
         });
     </script>
