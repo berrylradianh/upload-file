@@ -18,7 +18,7 @@ class UploadManager extends Controller
     public function uploadPost(Request $request)
     {
         try {
-            $file = $request->file("file_nomor_tanda_terima");
+            $file = $request->file("file_invoice");
             $destination = "uploads";
 
             // Simpan file dengan nama yang unik
@@ -30,8 +30,8 @@ class UploadManager extends Controller
                 'nomor_invoice' => $request->input('nomor_invoice'),
                 'tanggal_invoice' => $request->input('tanggal_invoice'),
                 'jenis_pengiriman' => $request->input('jenis_pengiriman'),
-                'total_invoice' => $request->input('total_invoice'),
-                'file_nomor_tanda_terima' => $destination . '/' . $fileName,
+                'nominal_invoice' => $request->input('nominal_invoice'),
+                'file_invoice' => $destination . '/' . $fileName,
                 'tanggal_pengiriman' => $request->input('tanggal_pengiriman'),
                 'status' => 'upload',
             ]);

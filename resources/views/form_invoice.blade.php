@@ -124,7 +124,7 @@
                                     </div>
                                 </div>
                                 <div class="widget-content widget-content-area">
-                                    <form  action="{{ url('post_invoice') }}" method="POST" enctype="multipart/form-data">
+                                    <form action="{{ url('post_invoice') }}" method="POST" enctype="multipart/form-data">
                                         @csrf
                                         <div class="form-group mb-4">
                                             <label for="nomor_invoice">Nomor Invoice</label>
@@ -142,12 +142,17 @@
                                             </select>
                                         </div>
                                         <div class="form-group mb-4">
-                                            <label for="total_invoice">Total Invoice</label>
-                                            <input type="number" class="form-control" id="total_invoice" name="total_invoice" required>
+                                            <label for="nominal_invoice">Nominal Invoice</label>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">Rp</span>
+                                                </div>
+                                                <input type="number" class="form-control" id="nominal_invoice" name="nominal_invoice" required>
+                                            </div>
                                         </div>
                                         <div class="form-group mb-4 mt-3">
-                                            <label for="file_nomor_tanda_terima">File Nomor Tanda Terima</label>
-                                            <input type="file" class="form-control-file" id="file_nomor_tanda_terima" name="file_nomor_tanda_terima">
+                                            <label for="file_invoice">File Invoice</label>
+                                            <input type="file" class="form-control-file" id="file_invoice" name="file_invoice">
                                         </div>
                                         <div class="form-group mb-4">
                                             <label for="tanggal_pengiriman">Tanggal Pengiriman</label>
@@ -180,7 +185,7 @@
             App.init();
         });
 
-        document.getElementById("total_invoice").addEventListener("input", function () {
+        document.getElementById("nominal_invoice").addEventListener("input", function() {
             this.value = this.value.replace(/[^0-9]/g, '');
         });
     </script>

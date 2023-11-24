@@ -159,7 +159,7 @@
                                             <label for="foto_bukti_tanda_terima">Foto Bukti Tanda Terima</label>
                                             <input type="file" class="form-control-file" id="foto_bukti_tanda_terima" name="foto_bukti_tanda_terima" required>
                                         </div>
-                                        <input hidden type="text" class="form-control-file" id="status" name="status" value="paid" required>
+                                        <input hidden type="text" class="form-control-file" id="status" name="status" value="received" required>
                                         <div class="form-group mb-4">
                                             <label for="tanggal_pengiriman">Tanggal Pengiriman</label>
                                             <input type="date" class="form-control" id="tanggal_pengiriman" name="tanggal_pengiriman" value="{{$data->tanggal_pengiriman}}" readonly>

@@ -130,8 +130,8 @@
                                             <th>Nomor Invoice</th>
                                             <th>Tanggal Invoice</th>
                                             <th>Jenis Pengiriman</th>
-                                            <th>Total Invoice</th>
-                                            <th>File Nomor Tanda </th>
+                                            <th>Nominal Invoice</th>
+                                            <th>File Invoice </th>
                                             <th>Foto Bukti Tanda Terima</th>
                                             <th>Tanggal Pengiriman</th>
                                             <th>Status</th>
@@ -170,8 +170,8 @@
                                             <th>Nomor Invoice</th>
                                             <th>Tanggal Invoice</th>
                                             <th>Jenis Pengiriman</th>
-                                            <th>Total Invoice</th>
-                                            <th>File Nomor Tanda </th>
+                                            <th>Nominal Invoice</th>
+                                            <th>File Invoice </th>
                                             <th>Foto Bukti Tanda Terima</th>
                                             <th>Tanggal Pengiriman</th>
                                             <th>Status</th>
