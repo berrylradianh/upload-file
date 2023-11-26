@@ -144,10 +144,10 @@
                                             <td>{{ $data->nomor_invoice }}</td>
                                             <td>{{ $data->tanggal_invoice }}</td>
                                             <td>{{ $data->jenis_pengiriman }}</td>
-                                            <td>{{ $data->total_invoice }}</td>
-                                            <td> @if ($data->file_nomor_tanda_terima)
-                                                <?php $filename = pathinfo($data->file_nomor_tanda_terima)['filename']; ?>
-                                                <a href="{{ $data->file_nomor_tanda_terima }}" download>{{ $filename }}.{{ pathinfo($data->file_nomor_tanda_terima)['extension'] }}</a>
+                                            <td>{{ $data->nominal_invoice }}</td>
+                                            <td> @if ($data->file_invoice)
+                                                <?php $filename = pathinfo($data->file_invoice)['filename']; ?>
+                                                <a href="{{ $data->file_invoice }}" download>{{ $filename }}.{{ pathinfo($data->file_invoice)['extension'] }}</a>
                                                 @else
                                                 No File
                                                 @endif

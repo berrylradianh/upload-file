@@ -131,7 +131,7 @@
                                         <tr>
                                             <th>Nomor Tanda Terima</th>
                                             <th>Tanggal Kirim</th>
-                                            <th>Jumlah Invoice</th>
+                                            <th>Nominal Invoice</th>
                                             <th>Action</th>
                                             <th class="no-content"></th>
                                         </tr>
@@ -141,7 +141,7 @@
                                         <tr>
                                             <td>{{ $data->nomor_invoice }}</td>
                                             <td>{{ $data->tanggal_pengiriman }}</td>
-                                            <td>{{ $data->total_invoice }}</td>
+                                            <td>{{ $data->nominal_invoice }}</td>
                                             <td>
                                                 <a href="{{ url('upload_file_invoice', $data->id) }}"><input type="submit" name="time" class=" btn btn-primary" value="Upload"></a>
                                             </td>
@@ -152,7 +152,7 @@
                                         <tr>
                                             <th>Nomor Tanda Terima</th>
                                             <th>Tanggal Kirim</th>
-                                            <th>Jumlah Invoice</th>
+                                            <th>Nominal Invoice</th>
                                             <th>Action</th>
                                             <th class="no-content"></th>
                                         </tr>

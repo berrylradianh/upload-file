@@ -143,15 +143,15 @@
                                             <input type="text" class="form-control" id="jenis_pengiriman" name="jenis_pengiriman" value="{{$data->jenis_pengiriman}}" readonly>
                                         </div>
                                         <div class="form-group mb-4">
-                                            <label for="total_invoice">Total Invoice</label>
-                                            <input type="number" class="form-control" id="total_invoice" name="total_invoice" value="{{$data->total_invoice}}" readonly>
+                                            <label for="nominal_invoice">Nominal Invoice</label>
+                                            <input type="number" class="form-control" id="nominal_invoice" name="nominal_invoice" value="{{$data->nominal_invoice}}" readonly>
                                         </div>
                                         <div class="form-group mb-4 mt-3">
-                                            <label for="file_nomor_tanda_terima">File Nomor Tanda Terima</label>
-                                            @if($data->file_nomor_tanda_terima)
-                                            <input type="text" class="form-control" id="file_nomor_tanda_terima" name="file_nomor_tanda_terima" value="{{ $data->file_nomor_tanda_terima }}" readonly>
+                                            <label for="file_invoice">File Invoice</label>
+                                            @if($data->file_invoice)
+                                            <input type="text" class="form-control" id="file_invoice" name="file_invoice" value="{{ $data->file_invoice }}" readonly>
                                             @else
-                                            <input type="file" class="form-control-file" id="file_nomor_tanda_terima" name="file_nomor_tanda_terima">
+                                            <input type="file" class="form-control-file" id="file_invoice" name="file_invoice">
                                             <small class="text-muted">No file uploaded yet.</small>
                                             @endif
                                         </div>
@@ -191,7 +191,7 @@
             App.init();
         });
 
-        document.getElementById("total_invoice").addEventListener("input", function() {
+        document.getElementById("nominal_invoice").addEventListener("input", function() {
             this.value = this.value.replace(/[^0-9]/g, '');
         });
     </script>
