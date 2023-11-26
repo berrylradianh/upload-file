@@ -21,11 +21,9 @@ class UploadManager extends Controller
             $file = $request->file("file_invoice");
             $destination = "uploads";
 
-            // Simpan file dengan nama yang unik
             $fileName = uniqid() . '_' . $file->getClientOriginalName();
             $file->move($destination, $fileName);
 
-            // Buat objek Invoice dengan menggunakan model Invoice
             $invoice = new Invoice([
                 'nomor_invoice' => $request->input('nomor_invoice'),
                 'tanggal_invoice' => $request->input('tanggal_invoice'),
@@ -36,37 +34,42 @@ class UploadManager extends Controller
                 'status' => 'upload',
             ]);
 
-            // Simpan ke database
             if ($invoice->save()) {
                 return redirect()->route('invoice_pending')->with('success', 'File uploaded and data saved successfully');
             } else {
                 return redirect()->route('invoice_pending')->with('error', 'File upload failed');
             }
         } catch (Exception $e) {
-            // Cetak pesan error
             dd($e->getMessage());
         }
     }
 
     public function edit($id)
     {
-        $data = Invoice::findorfail($id);
-        return view('upload_file_invoice', compact('data'));
+        try {
+            $data = Invoice::findorfail($id);
+            return view('upload_file_invoice', compact('data'));
+        } catch (Exception $e) {
+            dd($e->getMessage());
+        }
     }
 
     public function update(Request $request, $id)
     {
-        $file = $request->file("foto_bukti_tanda_terima");
-        $destination = "uploads";
+        try {
+            $file = $request->file("foto_bukti_tanda_terima");
+            $destination = "uploads";
 
-        // Simpan file dengan nama yang unik
-        $fileName = uniqid() . '_' . $file->getClientOriginalName();
-        $file->move($destination, $fileName);
+            $fileName = uniqid() . '_' . $file->getClientOriginalName();
+            $file->move($destination, $fileName);
 
-        Invoice::where('id', $id)->update([
-            'status'   => $request->status,
-            'foto_bukti_tanda_terima' => $destination . '/' . $fileName,
-        ]);
-        return redirect()->route('table')->with('success', 'File uploaded and data saved successfully');
+            Invoice::where('id', $id)->update([
+                'status'   => $request->status,
+                'foto_bukti_tanda_terima' => $destination . '/' . $fileName,
+            ]);
+            return redirect()->route('table')->with('success', 'File uploaded and data saved successfully');
+        } catch (Exception $e) {
+            dd($e->getMessage());
+        }
     }
 }
