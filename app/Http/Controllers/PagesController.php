@@ -17,6 +17,22 @@ class PagesController extends Controller
             dd($e->getMessage());
         }
     }
+    public function home()
+    {
+        try {
+            return view('home');
+        } catch (Exception $e) {
+            dd($e->getMessage());
+        }
+    }
+    public function form_invoice()
+    {
+        try {
+            return view('form_invoice');
+        } catch (Exception $e) {
+            dd($e->getMessage());
+        }
+    }
     public function invoice_pending()
     {
         try {

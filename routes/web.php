@@ -15,26 +15,6 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
-Route::get('/home', function () {
-    return view('home');
-});
-
-// Route::get('/login', function () {
-//     return view('login');
-// });
-
-// Route::get('/invoice_pending', function () {
-//     return view('invoice_pending');
-// }) -> name('invoice_pending');
-
-Route::get('/form_invoice', function () {
-    return view('form_invoice');
-});
-
-// Route::get('/upload_file_invoice', function () {
-//     return view('upload_file_invoice');
-// });
 Route::get('/login', [PagesController::class, 'login']) -> name('login');
 Route::post('/login', [LoginController::class, 'login']) -> name('login.post');
 
@@ -45,3 +25,6 @@ Route::post('/post_upload_file_invoice/{id}', [UploadManager::class, 'update']) 
 
 Route::get('/upload', [UploadManager::class, 'upload'])->name('upload.form');
 Route::post('/post_invoice', [UploadManager::class, 'uploadPost']);
+
+Route::get('/home', [PagesController::class, 'home']) -> name('home');
+Route::get('/form_invoice', [PagesController::class, 'form_invoice']) -> name('form_invoice');
