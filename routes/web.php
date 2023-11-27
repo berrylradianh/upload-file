@@ -19,9 +19,9 @@ Route::get('/home', function () {
     return view('home');
 });
 
-// Route::get('/table', function () {
-//     return view('table');
-// });
+Route::get('/login', function () {
+    return view('login');
+});
 
 // Route::get('/invoice_pending', function () {
 //     return view('invoice_pending');
