@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\UploadManager;
 use Illuminate\Support\Facades\Route;
@@ -19,9 +20,9 @@ Route::get('/home', function () {
     return view('home');
 });
 
-Route::get('/login', function () {
-    return view('login');
-});
+// Route::get('/login', function () {
+//     return view('login');
+// });
 
 // Route::get('/invoice_pending', function () {
 //     return view('invoice_pending');
@@ -34,6 +35,8 @@ Route::get('/form_invoice', function () {
 // Route::get('/upload_file_invoice', function () {
 //     return view('upload_file_invoice');
 // });
+Route::get('/login', [PagesController::class, 'login']) -> name('login');
+Route::post('/login', [LoginController::class, 'login']) -> name('login.post');
 
 Route::get('/invoice_pending', [PagesController::class, 'invoice_pending']) -> name('invoice_pending');
 Route::get('/table', [PagesController::class, 'table']) -> name('table');

@@ -9,6 +9,14 @@ use Illuminate\Http\Request;
 
 class PagesController extends Controller
 {
+    public function login()
+    {
+        try {
+            return view('login');
+        } catch (Exception $e) {
+            dd($e->getMessage());
+        }
+    }
     public function invoice_pending()
     {
         try {
