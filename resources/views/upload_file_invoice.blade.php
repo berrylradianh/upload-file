@@ -146,8 +146,8 @@
                                             @endif
                                         </div>
                                         <div class="form-group mb-4 mt-3">
-                                            <label for="foto_bukti_tanda_terima">Foto Bukti Tanda Terima</label>
-                                            <input type="file" class="form-control-file" id="foto_bukti_tanda_terima" name="foto_bukti_tanda_terima" required>
+                                            <label for="bukti_pembayaran">Foto Bukti Tanda Terima</label>
+                                            <input type="file" class="form-control-file" id="bukti_pembayaran" name="bukti_pembayaran" required>
                                         </div>
                                         <input hidden type="text" class="form-control-file" id="status" name="status" value="received" required>
                                         <div class="form-group mb-4">

@@ -10,6 +10,15 @@ use Illuminate\Support\Facades\Auth;
 
 class PagesController extends Controller
 {
+    public function index()
+    {
+        try {
+            // dd(Auth::user());
+            return view('welcome');
+        } catch (Exception $e) {
+            dd($e->getMessage());
+        }
+    }
     public function login()
     {
         try {

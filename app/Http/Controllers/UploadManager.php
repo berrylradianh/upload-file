@@ -57,7 +57,7 @@ class UploadManager extends Controller
     public function update(Request $request, $id)
     {
         try {
-            $file = $request->file("foto_bukti_tanda_terima");
+            $file = $request->file("bukti_pembayaran");
             $destination = "uploads";
 
             $fileName = uniqid() . '_' . $file->getClientOriginalName();
@@ -65,7 +65,7 @@ class UploadManager extends Controller
 
             Invoice::where('id', $id)->update([
                 'status'   => $request->status,
-                'foto_bukti_tanda_terima' => $destination . '/' . $fileName,
+                'bukti_pembayaran' => $destination . '/' . $fileName,
             ]);
             return redirect()->route('table')->with('success', 'File uploaded and data saved successfully');
         } catch (Exception $e) {

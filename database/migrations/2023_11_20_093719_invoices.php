@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('jenis_pengiriman');
             $table->integer('nominal_invoice');
             $table->string('file_invoice');
-            $table->string('foto_bukti_tanda_terima')->nullable();
+            $table->string('bukti_pembayaran')->nullable();
             $table->date('tanggal_pengiriman');
             $table->string('status');
             $table->timestamps();

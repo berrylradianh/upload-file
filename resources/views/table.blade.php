@@ -162,7 +162,7 @@
                                             <th>Jenis Pengiriman</th>
                                             <th>Nominal Invoice</th>
                                             <th>File Invoice </th>
-                                            <th>Foto Bukti Tanda Terima</th>
+                                            <th>Bukti Pembayaran</th>
                                             <th>Tanggal Pengiriman</th>
                                             <th>Status</th>
                                             <th class="no-content"></th>
@@ -183,9 +183,9 @@
                                                 @endif
                                             </td>
                                             <td>
-                                                @if ($data->foto_bukti_tanda_terima)
-                                                <?php $filename = pathinfo($data->foto_bukti_tanda_terima)['filename']; ?>
-                                                <a href="{{ $data->foto_bukti_tanda_terima }}" download>{{ $filename }}.{{ pathinfo($data->foto_bukti_tanda_terima)['extension'] }}</a>
+                                                @if ($data->bukti_pembayaran)
+                                                <?php $filename = pathinfo($data->bukti_pembayaran)['filename']; ?>
+                                                <a href="{{ $data->bukti_pembayaran }}" download>{{ $filename }}.{{ pathinfo($data->bukti_pembayaran)['extension'] }}</a>
                                                 @else
                                                 No Foto
                                                 @endif
@@ -202,7 +202,7 @@
                                             <th>Jenis Pengiriman</th>
                                             <th>Nominal Invoice</th>
                                             <th>File Invoice </th>
-                                            <th>Foto Bukti Tanda Terima</th>
+                                            <th>Bukti Pembayaran</th>
                                             <th>Tanggal Pengiriman</th>
                                             <th>Status</th>
                                             <th class="no-content"></th>
