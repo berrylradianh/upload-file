@@ -198,7 +198,7 @@
                                         @foreach ($datas as $data)
                                         <tr>
                                             <td>{{ $data->nomor_invoice }}</td>
-                                            <td>{{ $data->tanggal_invoice }}</td>
+                                            <td>{{ \Carbon\Carbon::parse($data->tanggal_invoice)->format('d F Y') }}</td>
                                             <td>{{ $data->jenis_pengiriman }}</td>
                                             <td>{{ $data->nominal_invoice }}</td>
                                             <td> @if ($data->file_invoice)
@@ -216,7 +216,7 @@
                                                 No Foto
                                                 @endif
                                             </td>
-                                            <td>{{ $data->tanggal_pengiriman }}</td>
+                                            <td>{{ \Carbon\Carbon::parse($data->tanggal_pengiriman)->format('d F Y') }}</td>
                                             <td>{{ $data->status }}</td>
                                         </tr>
                                         @endforeach

@@ -179,16 +179,20 @@
                     <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
                         <div class="widget-content widget-content-area br-6">
                             <div class="table-responsive mb-4 mt-4">
+                                @if (Auth::user()->role_id == 2)
                                 <div class="">
                                     <a href="{{ url('form_invoice') }}"><input type="submit" name="tambah_data_invoice" class=" mb-4 btn btn-primary" value="Tambah Data Invoice"></a>
                                 </div>
+                                @endif
                                 <table id="zero-config" class="table table-hover" style="width:100%">
                                     <thead>
                                         <tr>
                                             <th>Nomor Tanda Terima</th>
                                             <th>Tanggal Kirim</th>
                                             <th>Nominal Invoice</th>
+                                            @if (Auth::user()->role_id == 1)
                                             <th>Action</th>
+                                            @endif
                                             <th class="no-content"></th>
                                         </tr>
                                     </thead>
@@ -198,9 +202,11 @@
                                             <td>{{ $data->nomor_invoice }}</td>
                                             <td>{{ $data->tanggal_pengiriman }}</td>
                                             <td>{{ $data->nominal_invoice }}</td>
+                                            @if (Auth::user()->role_id == 1)
                                             <td>
                                                 <a href="{{ url('upload_file_invoice', $data->id) }}"><input type="submit" name="time" class=" btn btn-primary" value="Upload"></a>
                                             </td>
+                                            @endif
                                         </tr>
                                         @endforeach
                                     </tbody>
@@ -209,7 +215,9 @@
                                             <th>Nomor Tanda Terima</th>
                                             <th>Tanggal Kirim</th>
                                             <th>Nominal Invoice</th>
+                                            @if (Auth::user()->role_id == 1)
                                             <th>Action</th>
+                                            @endif
                                             <th class="no-content"></th>
                                         </tr>
                                     </tfoot>
