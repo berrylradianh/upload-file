@@ -6,12 +6,14 @@ use App\Http\Controllers\Controller;
 use App\Models\Invoice;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PagesController extends Controller
 {
     public function login()
     {
         try {
+            // dd(Auth::user());
             return view('login');
         } catch (Exception $e) {
             dd($e->getMessage());

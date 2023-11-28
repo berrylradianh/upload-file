@@ -29,4 +29,15 @@ class LoginController extends Controller
                 dd($e->getMessage());
             }
         }
+
+        public function logout()
+        {
+            try {
+                Auth::logout();
+
+                return redirect()->route('login');
+            } catch (Exception $e) {
+                dd($e->getMessage());
+            }
+        }
 }
