@@ -174,10 +174,10 @@
                                             <td>{{ $data->nomor_invoice }}</td>
                                             <td>{{ \Carbon\Carbon::parse($data->tanggal_invoice)->format('d F Y') }}</td>
                                             <td>{{ $data->jenis_pengiriman }}</td>
-                                            <td>{{ $data->nominal_invoice }}</td>
+                                            <td>Rp{{ $data->nominal_invoice }}</td>
                                             <td> @if ($data->file_invoice)
                                                 <?php $filename = pathinfo($data->file_invoice)['filename']; ?>
-                                                <a href="{{ $data->file_invoice }}" download>{{ $filename }}.{{ pathinfo($data->file_invoice)['extension'] }}</a>
+                                                <a href="{{ $data->file_invoice }}" download>File Invoice {{$data->nomor_invoice}}</a>
                                                 @else
                                                 No File
                                                 @endif
@@ -185,7 +185,7 @@
                                             <td>
                                                 @if ($data->bukti_pembayaran)
                                                 <?php $filename = pathinfo($data->bukti_pembayaran)['filename']; ?>
-                                                <a href="{{ $data->bukti_pembayaran }}" download>{{ $filename }}.{{ pathinfo($data->bukti_pembayaran)['extension'] }}</a>
+                                                <a href="{{ $data->bukti_pembayaran }}" download>File Invoice {{$data->bukti_pembayaran}}</a>
                                                 @else
                                                 No Foto
                                                 @endif

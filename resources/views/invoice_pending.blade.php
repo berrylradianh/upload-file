@@ -162,6 +162,7 @@
                                     <thead>
                                         <tr>
                                             <th>Nomor Tanda Terima</th>
+                                            <th>File Invoice</th>
                                             <th>Tanggal Kirim</th>
                                             <th>Nominal Invoice</th>
                                             @if (Auth::user()->role_id == 1)
@@ -174,16 +175,23 @@
                                         @foreach ($datas as $data)
                                         <tr>
                                             <td>{{ $data->nomor_invoice }}</td>
-                                            <td>{{ $data->tanggal_pengiriman }}</td>
-                                            <td>{{ $data->nominal_invoice }}</td>
-                                            @if (Auth::user()->role_id == 1)
-                                                @if ($data->status == 'received')
-                                                    <td>Uploaded</td>
+                                            <td> @if ($data->file_invoice)
+                                                <?php $filename = pathinfo($data->file_invoice)['filename']; ?>
+                                                <a href="{{ $data->file_invoice }}" download>File Invoice {{$data->nomor_invoice}}</a>
                                                 @else
-                                                <td>
-                                                    <a href="{{ url('upload_file_invoice', $data->id) }}"><input type="submit" name="time" class=" btn btn-primary" value="Upload"></a>
-                                                </td>
+                                                No File
                                                 @endif
+                                            </td>
+                                            <td>{{ $data->tanggal_pengiriman }}</td>
+                                            <td>Rp{{ $data->nominal_invoice }}</td>
+                                            @if (Auth::user()->role_id == 1)
+                                            @if ($data->status == 'received')
+                                            <td>Uploaded</td>
+                                            @else
+                                            <td>
+                                                <a href="{{ url('upload_file_invoice', $data->id) }}"><input type="submit" name="time" class=" btn btn-primary" value="Upload"></a>
+                                            </td>
+                                            @endif
                                             @endif
                                         </tr>
                                         @endforeach
@@ -191,6 +199,7 @@
                                     <tfoot>
                                         <tr>
                                             <th>Nomor Tanda Terima</th>
+                                            <th>File Invoice</th>
                                             <th>Tanggal Kirim</th>
                                             <th>Nominal Invoice</th>
                                             @if (Auth::user()->role_id == 1)
