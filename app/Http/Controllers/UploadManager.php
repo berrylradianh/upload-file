@@ -31,7 +31,7 @@ class UploadManager extends Controller
                 'nominal_invoice' => $request->input('nominal_invoice'),
                 'file_invoice' => $destination . '/' . $fileName,
                 'tanggal_pengiriman' => $request->input('tanggal_pengiriman'),
-                'status' => 'upload',
+                'status' => 'uploaded',
             ]);
 
             if ($invoice->save()) {

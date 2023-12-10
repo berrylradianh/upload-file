@@ -185,7 +185,7 @@
                                             <td>
                                                 @if ($data->bukti_pembayaran)
                                                 <?php $filename = pathinfo($data->bukti_pembayaran)['filename']; ?>
-                                                <a href="{{ $data->bukti_pembayaran }}" download>File Invoice {{$data->bukti_pembayaran}}</a>
+                                                <a href="{{ $data->bukti_pembayaran }}" download>Bukti Pembayaran {{$data->nomor_invoice}}</a>
                                                 @else
                                                 No Foto
                                                 @endif

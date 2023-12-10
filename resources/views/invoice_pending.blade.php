@@ -166,7 +166,7 @@
                                             <th>Tanggal Kirim</th>
                                             <th>Nominal Invoice</th>
                                             @if (Auth::user()->role_id == 1)
-                                            <th>Action</th>
+                                            <th class="text-center">Action</th>
                                             @endif
                                             <th class="no-content"></th>
                                         </tr>
@@ -182,14 +182,16 @@
                                                 No File
                                                 @endif
                                             </td>
-                                            <td>{{ $data->tanggal_pengiriman }}</td>
+                                            <td>{{ \Carbon\Carbon::parse($data->tanggal_pengiriman)->format('d F Y') }}</td>
                                             <td>Rp{{ $data->nominal_invoice }}</td>
                                             @if (Auth::user()->role_id == 1)
                                             @if ($data->status == 'received')
-                                            <td>Uploaded</td>
+                                            <td class="text-center">Uploaded</td>
                                             @else
-                                            <td>
+                                            <td class="text-center">
                                                 <a href="{{ url('upload_file_invoice', $data->id) }}"><input type="submit" name="time" class=" btn btn-primary" value="Upload"></a>
+                                                <a href="#"><input type="submit" name="time" class=" btn btn-warning" value="Reject"></a>
+                                                <a href="#"><input type="submit" name="time" class=" btn btn-danger" value="Delete"></a>
                                             </td>
                                             @endif
                                             @endif
@@ -203,7 +205,7 @@
                                             <th>Tanggal Kirim</th>
                                             <th>Nominal Invoice</th>
                                             @if (Auth::user()->role_id == 1)
-                                            <th>Action</th>
+                                            <th class="text-center">Action</th>
                                             @endif
                                             <th class="no-content"></th>
                                         </tr>
