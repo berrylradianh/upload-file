@@ -83,4 +83,14 @@ class UploadManager extends Controller
             dd($e->getMessage());
         }
     }
+
+    public function delete($id)
+    {
+        try {
+            Invoice::where('id', $id)->delete();
+            return redirect()->route('table');
+        } catch (Exception $e) {
+            dd($e->getMessage());
+        }
+    }
 }

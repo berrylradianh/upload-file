@@ -165,6 +165,7 @@
                                             <th>File Invoice</th>
                                             <th>Tanggal Kirim</th>
                                             <th>Nominal Invoice</th>
+                                            <th>Status</th>
                                             @if (Auth::user()->role_id == 1)
                                             <th class="no-content"></th>
                                             <th class="text-center">Action</th>
@@ -186,6 +187,7 @@
                                             </td>
                                             <td>{{ \Carbon\Carbon::parse($data->tanggal_pengiriman)->format('d F Y') }}</td>
                                             <td>Rp{{ $data->nominal_invoice }}</td>
+                                            <td>{{ $data->status }}</td>
                                             @if (Auth::user()->role_id == 1)
                                             @if (isset($data->status) && $data->status != '')
                                             <td class="no-content"></td>
@@ -202,7 +204,7 @@
                                             </td>
                                             </form>
 
-                                            <form action="#" method="post">
+                                            <form action="{{ url('delete_upload_file_invoice', $data->id) }}" method="post">
                                                 @csrf
                                                 <td class="text-center">
                                                     <button type="submit" name="time" class="btn btn-danger">Delete</button>
@@ -220,6 +222,7 @@
                                             <th>File Invoice</th>
                                             <th>Tanggal Kirim</th>
                                             <th>Nominal Invoice</th>
+                                            <th>Status</th>
                                             @if (Auth::user()->role_id == 1)
                                             <th class="no-content"></th>
                                             <th class="text-center">Action</th>
