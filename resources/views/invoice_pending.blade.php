@@ -189,7 +189,7 @@
                                             <td>Rp{{ $data->nominal_invoice }}</td>
                                             <td>{{ $data->status }}</td>
                                             @if (Auth::user()->role_id == 1)
-                                            @if (isset($data->status) && $data->status != '')
+                                            @if (isset($data->status) && $data->status != 'uploaded')
                                             <td class="no-content"></td>
                                             <td class="text-center">{{$data->status}}</td>
                                             <td class="no-content"></td>

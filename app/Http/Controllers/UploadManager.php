@@ -18,6 +18,7 @@ class UploadManager extends Controller
     public function uploadPost(Request $request)
     {
         try {
+            dd($request->all());
             $file = $request->file("file_invoice");
             $destination = "uploads";
 
