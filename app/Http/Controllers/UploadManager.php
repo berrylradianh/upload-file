@@ -67,7 +67,18 @@ class UploadManager extends Controller
                 'status'   => $request->status,
                 'bukti_pembayaran' => $destination . '/' . $fileName,
             ]);
-            return redirect()->route('table')->with('success', 'File uploaded and data saved successfully');
+            return redirect()->route('table');
+        } catch (Exception $e) {
+            dd($e->getMessage());
+        }
+    }
+    public function reject(Request $request, $id)
+    {
+        try {
+            Invoice::where('id', $id)->update([
+                'status'   => $request->status,
+            ]);
+            return redirect()->route('table');
         } catch (Exception $e) {
             dd($e->getMessage());
         }

@@ -166,7 +166,9 @@
                                             <th>Tanggal Kirim</th>
                                             <th>Nominal Invoice</th>
                                             @if (Auth::user()->role_id == 1)
+                                            <th class="no-content"></th>
                                             <th class="text-center">Action</th>
+                                            <th class="no-content"></th>
                                             @endif
                                             <th class="no-content"></th>
                                         </tr>
@@ -185,13 +187,27 @@
                                             <td>{{ \Carbon\Carbon::parse($data->tanggal_pengiriman)->format('d F Y') }}</td>
                                             <td>Rp{{ $data->nominal_invoice }}</td>
                                             @if (Auth::user()->role_id == 1)
-                                            @if ($data->status == 'received')
-                                            <td class="text-center">Uploaded</td>
+                                            @if (isset($data->status) && $data->status != '')
+                                            <td class="no-content"></td>
+                                            <td class="text-center">{{$data->status}}</td>
+                                            <td class="no-content"></td>
                                             @else
                                             <td class="text-center">
                                                 <a href="{{ url('upload_file_invoice', $data->id) }}"><input type="submit" name="time" class=" btn btn-primary" value="Upload"></a>
-                                                <a href="#"><input type="submit" name="time" class=" btn btn-warning" value="Reject"></a>
-                                                <a href="#"><input type="submit" name="time" class=" btn btn-danger" value="Delete"></a>
+                                                <form action="{{ url('reject_upload_file_invoice', $data->id) }}" method="post">
+                                                    @csrf
+                                            <td class="text-center">
+                                                <input hidden type="text" class="form-control-file" id="status" name="status" value="rejected" required>
+                                                <button type="submit" name="time" class="btn btn-warning">Reject</button>
+                                            </td>
+                                            </form>
+
+                                            <form action="#" method="post">
+                                                @csrf
+                                                <td class="text-center">
+                                                    <button type="submit" name="time" class="btn btn-danger">Delete</button>
+                                                </td>
+                                            </form>
                                             </td>
                                             @endif
                                             @endif
@@ -205,7 +221,9 @@
                                             <th>Tanggal Kirim</th>
                                             <th>Nominal Invoice</th>
                                             @if (Auth::user()->role_id == 1)
+                                            <th class="no-content"></th>
                                             <th class="text-center">Action</th>
+                                            <th class="no-content"></th>
                                             @endif
                                             <th class="no-content"></th>
                                         </tr>

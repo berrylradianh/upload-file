@@ -25,6 +25,7 @@ Route::get('/invoice_pending', [PagesController::class, 'invoice_pending']) -> n
 Route::get('/table', [PagesController::class, 'table']) -> name('table');
 Route::get('/upload_file_invoice/{id}', [UploadManager::class, 'edit']) -> name('upload_file_invoice');
 Route::post('/post_upload_file_invoice/{id}', [UploadManager::class, 'update']) -> name('post_upload_file_invoice');
+Route::post('/reject_upload_file_invoice/{id}', [UploadManager::class, 'reject']) -> name('reject_upload_file_invoice');
 
 Route::get('/upload', [UploadManager::class, 'upload'])->name('upload.form');
 Route::post('/post_invoice', [UploadManager::class, 'uploadPost']);
