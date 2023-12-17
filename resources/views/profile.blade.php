@@ -143,7 +143,8 @@
                         <div class="scrollspy-example" data-spy="scroll" data-target="#account-settings-scroll" data-offset="-100">
                             <div class="row">
                                 <div class="col-xl-12 col-lg-12 col-md-12 layout-spacing">
-                                    <form id="general-info" class="section general-info">
+                                    <form id="general-info" class="section general-info" method="POST" action="{{ url('update_profile')}}">
+                                        @csrf
                                         <div class="info">
                                             <h6 class="">General Information</h6>
                                             <div class="row">
@@ -155,14 +156,15 @@
                                                                     <div class="col-sm-6">
                                                                         <div class="form-group">
                                                                             <label for="email">Email</label>
-                                                                            <input type="email" class="form-control" id="email" placeholder="Enter Your Email" value="{{Auth::user()->email}}">
+                                                                            <input type="email" class="form-control" id="email" name="email" placeholder="Enter Your Email" value="{{ Auth::user()->email }}">
+                                                                            <input hidden type="email" class="form-control" id="old_email" name="old_email" placeholder="Enter Your Email" value="{{ Auth::user()->email }}">
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label for="password">Password</label>
                                                                     <div class="input-group">
-                                                                        <input type="password" class="form-control" id="password" placeholder="Enter your password">
+                                                                        <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password">
                                                                         <div class="input-group-append">
                                                                             <span class="input-group-text" id="eye-toggle" onclick="togglePasswordVisibility()">
                                                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16" id="eye-icon">
@@ -175,7 +177,7 @@
                                                                 <div class="form-group">
                                                                     <label for="confirm_password">Confirm Password</label>
                                                                     <div class="input-group">
-                                                                        <input type="password" class="form-control" id="confirm_password" placeholder="Enter your password confirmation">
+                                                                        <input type="password" class="form-control" id="confirm_password" name="confirm_password" placeholder="Enter your password confirmation">
                                                                         <div class="input-group-append">
                                                                             <span class="input-group-text" id="eye-toggle" onclick="toggleConfirmPasswordVisibility()">
                                                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16" id="confirm-eye-icon">
@@ -191,122 +193,112 @@
                                                 </div>
                                             </div>
                                         </div>
+
+                                        <div class="account-settings-footer">
+                                            <div class="as-footer-container">
+                                                <button id="multiple-reset" class="btn btn-primary">Reset All</button>
+                                                <button type="submit" id="multiple-messages" class="btn btn-dark">Save Changes</button>
+                                            </div>
+                                        </div>
                                     </form>
+
                                 </div>
+
                             </div>
-                        </div>
-                    </div>
-
-                    <div class="account-settings-footer">
-
-                        <div class="as-footer-container">
-
-                            <button id="multiple-reset" class="btn btn-primary">Reset All</button>
-                            <!-- <div class="blockui-growl-message">
-                                <i class="flaticon-double-check"></i>&nbsp; Settings Saved Successfully
-                            </div> -->
-                            <form action="{{ url('update_profile')}}" method="post">
-                                @csrf
-                                <button id="multiple-messages" class="btn btn-dark">Save Changes</button>
-                            </form>
-
                         </div>
 
                     </div>
                 </div>
-
+                <!--  END CONTENT AREA  -->
             </div>
-        </div>
-        <!--  END CONTENT AREA  -->
-    </div>
-    <!-- END MAIN CONTAINER -->
+            <!-- END MAIN CONTAINER -->
 
-    <!-- BEGIN GLOBAL MANDATORY SCRIPTS -->
-    <script src="assets/js/libs/jquery-3.1.1.min.js"></script>
-    <script src="bootstrap/js/popper.min.js"></script>
-    <script src="bootstrap/js/bootstrap.min.js"></script>
-    <script src="plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>
-    <script src="assets/js/app.js"></script>
+            <!-- BEGIN GLOBAL MANDATORY SCRIPTS -->
+            <script src="assets/js/libs/jquery-3.1.1.min.js"></script>
+            <script src="bootstrap/js/popper.min.js"></script>
+            <script src="bootstrap/js/bootstrap.min.js"></script>
+            <script src="plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+            <script src="assets/js/app.js"></script>
 
-    <script>
-        $(document).ready(function() {
-            App.init();
+            <script>
+                $(document).ready(function() {
+                    App.init();
 
-            var button = document.getElementById("multiple-messages");
-            button.disabled = true;
+                    var button = document.getElementById("multiple-messages");
+                    button.disabled = true;
 
-            var initialEmail = "{{ Auth::user()->email }}";
-            var initialPassword = "";
-            var initialPasswordConfirmation = "";
+                    var initialEmail = "{{ Auth::user()->email }}";
+                    var initialPassword = "";
+                    var initialPasswordConfirmation = "";
 
-            $("#multiple-reset").on("click", function() {
-                $("#email").val(initialEmail);
+                    $("#multiple-reset").on("click", function() {
+                        $("#email").val(initialEmail);
 
-                $("#password").val(initialPassword);
-                $("#confirm_password").val(initialPasswordConfirmation);
-            });
+                        $("#password").val(initialPassword);
+                        $("#confirm_password").val(initialPasswordConfirmation);
+                    });
 
-            $("#password, #confirm_password").on("input", function() {
-                var password = $("#password").val();
-                var confirmPassword = $("#confirm_password").val();
+                    $("#password, #confirm_password").on("input", function() {
+                        var password = $("#password").val();
+                        var confirmPassword = $("#confirm_password").val();
 
-                button.disabled = password !== confirmPassword || password === "" || confirmPassword === "";
-            });
+                        button.disabled = password !== confirmPassword || password === "" || confirmPassword === "";
+                    });
 
-            $("#multiple-messages").on("click", function() {
-                var formData = new FormData();
-                var email = $("#email").val();
-                var password = $("#password").val();
-                var confirmPassword = $("#confirm_password").val();
+                    $("#multiple-messages").on("click", function() {
+                        var formData = new FormData();
+                        var email = $("#email").val();
+                        var password = $("#password").val();
+                        var confirmPassword = $("#confirm_password").val();
 
-                if (password !== confirmPassword) {
-                    alert("Password and Confirm Password must be the same");
-                    return;
-                } else if (password == "" || confirmPassword == "") {
-                    alert("Password or Confirm Password cannot be empty");
-                    return;
+                        if (password !== confirmPassword) {
+                            alert("Password and Confirm Password must be the same");
+                            return;
+                        } else if (password == "" || confirmPassword == "") {
+                            alert("Password or Confirm Password cannot be empty");
+                            return;
+                        }
+                    });
+                });
+
+                function togglePasswordVisibility() {
+                    var passwordInput = document.getElementById('password');
+                    var eyeIcon = document.getElementById('eye-icon');
+                    if (passwordInput.type === 'password') {
+                        passwordInput.type = 'text';
+                        eyeIcon.classList.remove('bi-eye');
+                        eyeIcon.classList.add('bi-eye-slash');
+                    } else {
+                        passwordInput.type = 'password';
+                        eyeIcon.classList.remove('bi-eye-slash');
+                        eyeIcon.classList.add('bi-eye');
+                    }
                 }
-            });
-        });
 
-        function togglePasswordVisibility() {
-            var passwordInput = document.getElementById('password');
-            var eyeIcon = document.getElementById('eye-icon');
-            if (passwordInput.type === 'password') {
-                passwordInput.type = 'text';
-                eyeIcon.classList.remove('bi-eye');
-                eyeIcon.classList.add('bi-eye-slash');
-            } else {
-                passwordInput.type = 'password';
-                eyeIcon.classList.remove('bi-eye-slash');
-                eyeIcon.classList.add('bi-eye');
-            }
-        }
+                function toggleConfirmPasswordVisibility() {
+                    var confirmPasswordInput = document.getElementById('confirm_password');
+                    var confirmEyeIcon = document.getElementById('confirm-eye-icon');
+                    if (confirmPasswordInput.type === 'password') {
+                        confirmPasswordInput.type = 'text';
+                        confirmEyeIcon.classList.remove('bi-eye');
+                        confirmEyeIcon.classList.add('bi-eye-slash');
+                    } else {
+                        confirmPasswordInput.type = 'password';
+                        confirmEyeIcon.classList.remove('bi-eye-slash');
+                        confirmEyeIcon.classList.add('bi-eye');
+                    }
+                }
+            </script>
+            <script src="assets/js/custom.js"></script>
+            <!-- END GLOBAL MANDATORY SCRIPTS -->
 
-        function toggleConfirmPasswordVisibility() {
-            var confirmPasswordInput = document.getElementById('confirm_password');
-            var confirmEyeIcon = document.getElementById('confirm-eye-icon');
-            if (confirmPasswordInput.type === 'password') {
-                confirmPasswordInput.type = 'text';
-                confirmEyeIcon.classList.remove('bi-eye');
-                confirmEyeIcon.classList.add('bi-eye-slash');
-            } else {
-                confirmPasswordInput.type = 'password';
-                confirmEyeIcon.classList.remove('bi-eye-slash');
-                confirmEyeIcon.classList.add('bi-eye');
-            }
-        }
-    </script>
-    <script src="assets/js/custom.js"></script>
-    <!-- END GLOBAL MANDATORY SCRIPTS -->
+            <!--  BEGIN CUSTOM SCRIPTS FILE  -->
 
-    <!--  BEGIN CUSTOM SCRIPTS FILE  -->
-
-    <script src="plugins/dropify/dropify.min.js"></script>
-    <script src="plugins/blockui/jquery.blockUI.min.js"></script>
-    <!-- <script src="plugins/tagInput/tags-input.js"></script> -->
-    <script src="assets/js/users/account-settings.js"></script>
-    <!--  END CUSTOM SCRIPTS FILE  -->
+            <script src="plugins/dropify/dropify.min.js"></script>
+            <script src="plugins/blockui/jquery.blockUI.min.js"></script>
+            <!-- <script src="plugins/tagInput/tags-input.js"></script> -->
+            <script src="assets/js/users/account-settings.js"></script>
+            <!--  END CUSTOM SCRIPTS FILE  -->
 </body>
 
 </html>
