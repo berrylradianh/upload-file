@@ -19,6 +19,14 @@ class PagesController extends Controller
             dd($e->getMessage());
         }
     }
+    public function profile()
+    {
+        try {
+            return view('profile');
+        } catch (Exception $e) {
+            dd($e->getMessage());
+        }
+    }
     public function login()
     {
         try {
