@@ -202,10 +202,13 @@
                         <div class="as-footer-container">
 
                             <button id="multiple-reset" class="btn btn-primary">Reset All</button>
-                            <div class="blockui-growl-message">
+                            <!-- <div class="blockui-growl-message">
                                 <i class="flaticon-double-check"></i>&nbsp; Settings Saved Successfully
-                            </div>
-                            <button id="multiple-messages" class="btn btn-dark">Save Changes</button>
+                            </div> -->
+                            <form action="{{ url('update_profile')}}" method="post">
+                                @csrf
+                                <button id="multiple-messages" class="btn btn-dark">Save Changes</button>
+                            </form>
 
                         </div>
 
@@ -229,6 +232,9 @@
         $(document).ready(function() {
             App.init();
 
+            var button = document.getElementById("multiple-messages");
+            button.disabled = true;
+
             var initialEmail = "{{ Auth::user()->email }}";
             var initialPassword = "";
             var initialPasswordConfirmation = "";
@@ -238,7 +244,13 @@
 
                 $("#password").val(initialPassword);
                 $("#confirm_password").val(initialPasswordConfirmation);
+            });
 
+            $("#password, #confirm_password").on("input", function() {
+                var password = $("#password").val();
+                var confirmPassword = $("#confirm_password").val();
+
+                button.disabled = password !== confirmPassword || password === "" || confirmPassword === "";
             });
 
             $("#multiple-messages").on("click", function() {
@@ -250,21 +262,11 @@
                 if (password !== confirmPassword) {
                     alert("Password and Confirm Password must be the same");
                     return;
+                } else if (password == "" || confirmPassword == "") {
+                    alert("Password or Confirm Password cannot be empty");
+                    return;
                 }
-
-                $.ajax({
-                    type: "POST",
-                    url: "{{ url('update_profile') }}",
-                    data: formData,
-                    success: function(response) {
-                        console.log("Data saved successfully:", response);
-                    },
-                    error: function(error) {
-                        console.error("Error saving data:", error);
-                    }
-                });
             });
-
         });
 
         function togglePasswordVisibility() {

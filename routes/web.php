@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PagesController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UploadManager;
 use Illuminate\Support\Facades\Route;
 
@@ -31,6 +32,8 @@ Route::post('/delete_upload_file_invoice/{id}', [UploadManager::class, 'delete']
 
 Route::get('/upload', [UploadManager::class, 'upload'])->name('upload.form');
 Route::post('/post_invoice', [UploadManager::class, 'uploadPost']);
+
+Route::post('/update_profile', [ProfileController::class, 'update_profile'])->name('update_profile');
 
 Route::get('/home', [PagesController::class, 'home']) -> name('home');
 Route::get('/form_invoice', [PagesController::class, 'form_invoice']) -> name('form_invoice');
